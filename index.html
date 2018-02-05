@@ -50,12 +50,15 @@
     <br>
     <ul class="list-group col-sm-6">
         Pogodjeni Odgovori:
-        <li class="list-group-item" ng-repeat="el in vm.pogodjeniOdgovori">{{el}}</li>
+        <li class="list-group-item list-group-item-success" ng-repeat="el in vm.pogodjeniOdgovori">{{el}}</li>
+        <li class="list-group-item list-group-item-danger" ng-repeat="el in vm.promaseniOdgovori">{{el}}</li>
+        
 
     </ul>
+  
     <ul class="list-group col-sm-6">
             Tacni Odgovori:
-            <li class="list-group-item" ng-repeat="el in vm.tacniOdgovori">{{el}}</li>
+            <li class="list-group-item list-group-item-success" ng-repeat="el in vm.tacniOdgovori">{{el}}</li>
     
         </ul>
 

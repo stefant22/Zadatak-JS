@@ -16,6 +16,7 @@ vm.izabraniOdgovori=[];
 vm.promaseniOdgovori=[];
 vm.posto=0;
 vm.zavrsena=false;
+vm.mixNiz=[];
 
 
 $http.get('podaci.json').then(function(data){
@@ -42,6 +43,9 @@ vm.izbaci=function(el){
         }
 
     }
+
+
+console.log("dsadasda");
 }
 
 function odbrojavanje(){
@@ -67,16 +71,37 @@ setInterval(odbrojavanje,1000);
 
 vm.potvrdi=function(){
     
+    
     for (var i = 0; i < vm.tacniOdgovori.length; i++) {
         for (var j = 0; j < vm.izabraniOdgovori.length; j++) {
             if (vm.izabraniOdgovori[j] === vm.tacniOdgovori[i]) {
                 vm.pogodjeniOdgovori.push(vm.tacniOdgovori[i]);
+                vm.mixNiz=vm.izabraniOdgovori.concat(vm.pogodjeniOdgovori);
+                console.log("131231");
+                console.log(vm.pogodjeniOdgovori);
+                console.log(vm.mixNiz);
+              
            
                 
             }
             
         }
     }
+
+    for(var i=0;i<vm.mixNiz.length;i++){
+        if (vm.izabraniOdgovori.indexOf(vm.mixNiz[i]) == -1 || vm.pogodjeniOdgovori.indexOf(vm.mixNiz[i]) == -1) {
+            vm.promaseniOdgovori.push(vm.mixNiz[i]);
+            console.log(vm.promaseniOdgovori);
+          }
+
+    }
+
+
+    
+    console.log("ok");
+    console.log("ok2");
+
+
 
 
     vm.posto=vm.pogodjeniOdgovori.length/vm.izabraniOdgovori.length*100;
