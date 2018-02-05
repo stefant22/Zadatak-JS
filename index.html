@@ -1,0 +1,79 @@
+<!DOCtype <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Zadatak 1 JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+    <link href="css/app.css" rel="stylesheet">
+
+
+</head>
+
+<body ng-app="myApp" ng-controller="MyCtrl as vm">
+    <div class="container">
+
+
+    <div ng-if="vm.zavrsena==false"class="col-lg-6">
+        <h3>{{vm.oblast}}</h3>
+
+       <p id="tekst">Preostalo vreme: <span id="vreme"></span></p>
+       
+
+        <input ng-init="vm.limit=0;" id="grad" type="text" ng-model="vm.grad" class="form-control" ng-click=" vm.limit=5;" />
+        <ul ng-show="vm.grad.length > 0" style="margin:0;" class="list-group" ng-repeat="el in  vm.ponudjeniOdgovori| filter:vm.grad| limitTo:vm.limit">
+            <a href="#" class="list-group-item" ng-click=" vm.izaberiOdgovor(el);vm.grad=''">{{el}}</a>
+        </ul>
+
+
+    </div>
+
+    <div  ng-if="vm.zavrsena==false" class="col-lg-6">
+        <ul ng-repeat="el in vm.izabraniOdgovori">
+
+            <li class="list-group-item">{{el}}
+                <span ng-click="vm.izbaci(el)" style="float:right; cursor:pointer;" class="glyphicon glyphicon-remove-circle"></span>
+            </li>
+        </ul>
+        
+
+        <button ng-if="vm.izabraniOdgovori.length>0;"  ng-click="vm.potvrdi(); vm.zavrsena=true; " class="btn btn-success">Zavrsi igru</button>
+        
+
+    </div>
+    <div ng-if="vm.zavrsena==true;">
+    <br>
+    <ul class="list-group col-sm-6">
+        Pogodjeni Odgovori:
+        <li class="list-group-item" ng-repeat="el in vm.pogodjeniOdgovori">{{el}}</li>
+
+    </ul>
+    <ul class="list-group col-sm-6">
+            Tacni Odgovori:
+            <li class="list-group-item" ng-repeat="el in vm.tacniOdgovori">{{el}}</li>
+    
+        </ul>
+
+
+    <uib-progressbar class="col-lg-12" ng-if="vm.zavrsena==true;" animate="false" value="vm.posto" type="success"><b>{{vm.posto| limitTo: 4 }}%</b></uib-progressbar>
+</div>
+
+</div>
+
+
+</body>
+
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="main.js"></script>
+
+</html>
